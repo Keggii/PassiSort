@@ -18,19 +18,17 @@ public class Main {
 
     public static int[] sort(int[] unsorted) {
         for (int i = 0; i < unsorted.length-1; i++) {
+            int cacheJ = i, cacheUS = unsorted[i];
             for (int j = i; j < unsorted.length; j++) {
-                if(unsorted[i] > unsorted[j]) {
-                    swap(unsorted, i, j);
+                if(cacheUS > unsorted[j]) {
+                    cacheUS = unsorted[j];
+                    cacheJ = j;
                 }
             }
+            unsorted[cacheJ] = unsorted[i];
+            unsorted[i] = cacheUS;
             System.out.println(Arrays.toString(unsorted));
         }
         return unsorted;
-    }
-
-    public static void swap(int[] unsorted, int i, int j) {
-        int cache = unsorted[j];
-        unsorted[j] = unsorted[i];
-        unsorted[i] = cache;
     }
 }
